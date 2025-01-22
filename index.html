@@ -1,84 +1,32 @@
 <!DOCTYPE html>
-<html>
+<!--
+    © 2025 S.Bhushan. All rights reserved.
+    This code is licensed under the MIT License.
+    Contact: gitsecure.io@gmail.com
+-->
+<html lang="en">
 <head>
-<title>Typing Effect Code Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typed Text Example</title>
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	 <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-
-<h1>Typing Effect Code Generator</h1>
-
-<label for="inputText">Enter your text:</label><br>
-<textarea id="inputText" rows="5" cols="50"></textarea><br><br>
-
-<button onclick="generateCode()">Generate Code</button>
-<button onclick="downloadCode()">Download Code</button>
-
-<textarea id="outputCode" rows="10" cols="80" readonly></textarea>
-
-<script>
-function generateCode() {
-  const inputText = document.getElementById("inputText").value;
-  const className = "typing-text"; 
-
-  const htmlTemplate = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <style>
-        body {
-          background-color: lightgreen;
-          margin: 0; 
-          display: flex; 
-          justify-content: center; 
-          align-items: center; 
-          min-height: 100vh; 
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap'); 
-        .${className} {
-          font-family: 'Roboto', sans-serif; 
-          font-size: 2rem; 
-          font-weight: bold; 
-          white-space: pre-wrap; 
-          overflow: hidden; 
-          border-right: .15em solid black; 
-          width: auto; /* Set width to auto */
-          animation: typing 3s steps(40), blink .5s infinite alternate;
-          text-align: center; 
-          line-height: 1.5; 
-        }
-
-        @keyframes typing {
-          from { width: 0 }
-          to { width: 100% }
-        }
-
-        @keyframes blink {
-          from { border-right-color: black; }
-          to { border-right-color: transparent; }
-        }
-      </style>
-    </head>
-    <body>
-      <div style="width: 1120px; height: 630px; background-color: #fff; display: flex; justify-content: center; align-items: center;"> 
-        <p class="${className}">${inputText.replace(/\n/g, '<br>')}</p> 
-      </div>
-    </body>
-    </html>
-  `;
-
-  document.getElementById("outputCode").value = htmlTemplate;
-}
-
-function downloadCode() {
-  const code = document.getElementById("outputCode").value;
-  const blob = new Blob([code], { type: 'text/html' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'typing_effect.html';
-  link.click();
-  URL.revokeObjectURL(link.href);
-}
-</script>
-
+<body class="custom-body">
+    <div class="container">
+        <p id="typed-text" class="custom-style"></p>
+        <input type="text" id="input-text" placeholder="Enter new text here (use \\n for line breaks)">
+        <div class="button-container">
+            <button class="sb-button" onclick="updateText()"><i class="fas fa-sync-alt"></i> Update Text</button>
+            <button class="sb-button" onclick="generateHtmlFile()"><i class="fas fa-file-alt"></i> Generate HTML File</button>
+        </div>
+    </div>
+    <footer class="sb-footer">
+        <p>© 2025 S.Bhushan. All rights reserved. | Contact: gitsecure.io@gmail.com</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
